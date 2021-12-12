@@ -1,3 +1,3 @@
 grammar python;
-comment: '#' CHAR;
-CHAR: 'a'..'z' ' ';
+comment: '#'CHAR;
+CHAR: 'a'..'z';

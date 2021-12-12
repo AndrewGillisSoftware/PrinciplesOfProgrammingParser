@@ -1,6 +1,6 @@
 token literal names:
 null
-'hello'
+'#'
 null
 
 token symbolic names:
@@ -9,7 +9,7 @@ null
 CHAR
 
 rule names:
-prule
+comment
 
 
 atn:

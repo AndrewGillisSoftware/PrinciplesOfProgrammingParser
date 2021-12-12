@@ -1,9 +1,13 @@
+import org.antlr.v4.gui.TreeViewer;
+import org.antlr.v4.gui.Trees;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class start {
 
@@ -17,10 +21,14 @@ public class start {
             pythonLexer pLexer = new pythonLexer(stream);
             CommonTokenStream tokenStream = new CommonTokenStream(pLexer);
             pythonParser pParser = new pythonParser(tokenStream);
-            ParseTree pythonParseTree = pParser.prule();
+            ParseTree pythonParseTree = pParser.comment();
 
-            pythonVisitor pythonVisitor = new pythonBaseVisitor();
-            pythonVisitor.visit(pythonParseTree);
+            System.out.println(pythonParseTree.toStringTree(pParser));
+
+            TreeViewer pythonPTreeView = new TreeViewer(Arrays.asList(pParser.getRuleNames()), pythonParseTree);
+            pythonPTreeView.open();
+
+
         }
         catch (IOException exception)
         {
