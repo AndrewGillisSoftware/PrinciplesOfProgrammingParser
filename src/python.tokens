@@ -1,11 +1,7 @@
 T__0=1
 T__1=2
 T__2=3
-T__3=4
-ANYCHAR=5
-VARCHAR=6
-VALUE=7
+ANYCHAR=4
 '#'=1
 '\r'=2
 '\n'=3
-'='=4

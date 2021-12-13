@@ -22,7 +22,7 @@ public class start {
             pythonLexer pLexer = new pythonLexer(stream);
             CommonTokenStream tokenStream = new CommonTokenStream(pLexer);
             pythonParser pParser = new pythonParser(tokenStream);
-            ParseTree pythonParseTree = pParser.assignment();
+            ParseTree pythonParseTree = pParser.comment();
 
             //Prints Additional Information about the Parse Tree
             System.out.println(pythonParseTree.toStringTree(pParser));

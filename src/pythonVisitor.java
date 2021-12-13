@@ -10,21 +10,9 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface pythonVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link pythonParser#thing}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitThing(pythonParser.ThingContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link pythonParser#comment}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitComment(pythonParser.CommentContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link pythonParser#assignment}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAssignment(pythonParser.AssignmentContext ctx);
 }
