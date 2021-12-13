@@ -17,14 +17,17 @@ public class start {
         //Catch a File Error
         try
         {
+            //Process of Generating a Parse Tree
             CharStream stream = CharStreams.fromFileName(fileName);
             pythonLexer pLexer = new pythonLexer(stream);
             CommonTokenStream tokenStream = new CommonTokenStream(pLexer);
             pythonParser pParser = new pythonParser(tokenStream);
-            ParseTree pythonParseTree = pParser.comment();
+            ParseTree pythonParseTree = pParser.assignment();
 
+            //Prints Additional Information about the Parse Tree
             System.out.println(pythonParseTree.toStringTree(pParser));
 
+            //Creates the Tree Gui
             TreeViewer pythonPTreeView = new TreeViewer(Arrays.asList(pParser.getRuleNames()), pythonParseTree);
             pythonPTreeView.open();
 

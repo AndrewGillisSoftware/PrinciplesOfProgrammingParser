@@ -15,6 +15,18 @@ public class pythonBaseListener implements pythonListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterThing(pythonParser.ThingContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitThing(pythonParser.ThingContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterComment(pythonParser.CommentContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -22,6 +34,18 @@ public class pythonBaseListener implements pythonListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitComment(pythonParser.CommentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAssignment(pythonParser.AssignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAssignment(pythonParser.AssignmentContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

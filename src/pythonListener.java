@@ -7,6 +7,16 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface pythonListener extends ParseTreeListener {
 	/**
+	 * Enter a parse tree produced by {@link pythonParser#thing}.
+	 * @param ctx the parse tree
+	 */
+	void enterThing(pythonParser.ThingContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link pythonParser#thing}.
+	 * @param ctx the parse tree
+	 */
+	void exitThing(pythonParser.ThingContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link pythonParser#comment}.
 	 * @param ctx the parse tree
 	 */
@@ -16,4 +26,14 @@ public interface pythonListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitComment(pythonParser.CommentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link pythonParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignment(pythonParser.AssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link pythonParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignment(pythonParser.AssignmentContext ctx);
 }
