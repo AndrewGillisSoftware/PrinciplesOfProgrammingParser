@@ -12,7 +12,7 @@ Everyone did equal work although it may not show that in the git commit history.
 
 The Team Completed Bonus 2, Parse Tree Visualization
 
-Demo Video and Setup Video Link: 
+Demo Video and Setup Video Link: https://youtu.be/QKnk5XlkRoA
 
 Sources:
 From original source of gradle file: https://tomassetti.me/antlr-mega-tutorial/#java-setup
