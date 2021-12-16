@@ -1,27 +1,29 @@
-pythonLanguage: (arith | assignment | comment | conditional | ifblock | whileLoop | forLoop | unknown)+;
+pythonLanguage: (scope | assignment | call | concat | arith | comment | conditional | ifblock | whileLoop | forLoop | unknown)+;
 
 /*math: arith | assignment;
 control: ifblock | whileLoop;
 other:comment | unknown;*/
 
-call: VAR LPAR (.*?) RPAR;
-statement: call NEWLINE;
+call: VAR LPAR value (COMMA value)*? RPAR;
+value: (call | concat | arith | VAR | STRING | NUMBER);
 
-assignment: VAR ' '*? OP_EQ ' '*? (call | VAR | TYPE | arith) NEWLINE;
-arith: (call | VAR | TYPE) ' '*? (OP ' '*? (call | VAR | TYPE))+ NEWLINE;
+assignment: VAR OP_EQ value NEWLINE;
+concat: STRING (PLUS (STRING | call))+;
+arith: NUMBER (OP NUMBER)+;
 
-whileLoop: WHILE ' '*? conditional ' '*? NEWLINE scope;
-forLoop: FOR ' '*? VAR ' '*? IN ' '*? call COLON NEWLINE scope;
+whileLoop: WHILE conditional COLON NEWLINE scope;
+forLoop: FOR VAR IN call COLON NEWLINE scope;
 elseblock: ELSE COLON NEWLINE scope;
-elifblock: ELIF ' '*? conditional ' '*? NEWLINE scope;
-ifblock:(INDENT)*? IF ' '*? conditional ' '*? NEWLINE scope ((INDENT)*? elifblock)? ((INDENT)*? elseblock)?;
-scope: ((INDENT)+ (arith | assignment | comment | conditional | whileLoop | ifblock | statement))+;
-conditional: comparison (' '*? LOGIC ' '*? comparison)* COLON;
-comparison: (call | VAR | TYPE | arith) ' '*? COMPARE ' '*? (call | VAR | TYPE | arith);
+elifblock: ELIF conditional NEWLINE scope;
+ifblock: IF conditional COLON NEWLINE scope ((INDENT)*? elifblock)? ((INDENT)*? elseblock)?;
+scope: ((INDENT)+ (assignment | comment | whileLoop | ifblock | call NEWLINE))+;
+conditional: comparison (LOGIC comparison)*;
+comparison: value COMPARE value;
 
 comment: '#' .*? NEWLINE;
 unknown: .;
 
+BREAK: 'break';
 WHILE: 'while';
 FOR: 'for';
 IN: 'in';
@@ -33,26 +35,29 @@ LOGIC: 'and' | 'or' | ('not' | NOT);
 COMPARE: EQ EQ | NOT EQ | '<' EQ? | '>' EQ?;
 NOT: '!';
 COLON: ':';
+COMMA: ',';
 
-OP_EQ: OP? EQ;
-OP: ('+' | '-' | '*' | '/' | '^' | '%');
+OP_EQ: (OP | PLUS)? EQ;
+OP: ('-' | '*' | '/' | '^' | '%');
+PLUS: '+';
 EQ: '=';
 
 //CALL: VAR'('TYPE*?')';
 VAR: (LETTER | '_')+ (LETTER | DIGIT |'_')*;
-TYPE: STRING | INT;
+//TYPE: STRING | INT;
 LPAR: '(';
 RPAR: ')';
 
-INT: NEGATIVE DIGIT+ | DIGIT+;
+NUMBER: NEGATIVE? DIGIT+;
 DIGIT: [0-9];
 NEGATIVE: '-';
 
 LETTER: ('a'..'z') | ('A'..'Z');
 
-INDENT: '    ';
+INDENT: ('    ' | '\t')+;
 
-NEWLINE: '\r'? '\n';
+NEWLINE: '\r'? '\n' | '\r';
 
-STRING: '"' .*? '"'; 
+STRING: '"' .*? '"';
+WHITESPACE: ' ' -> skip;
 
